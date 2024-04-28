@@ -11,13 +11,24 @@ app.use(cors());
 app.use(express.json());
 
 
-
-
-
+const corsOpts = {
+    origin: '*',
+    methods: [
+    'GET',
+    'POST',
+    'PATCH',
+    'PUT',
+    'DELETE',
+    'OPTIONS'
+    ],
+    allowedHeaders: [
+    'Content-Type',
+    ],
+    };
+    app.use(cors(corsOpts));
 
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.brerg1p.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
-
 
 
 
@@ -35,9 +46,16 @@ async function run() {
         // Connect the client to the server	(optional starting in v4.7)
         await client.connect();
 
-        const itemCollection = client.db('artistryDB').collection('items')
+        const itemCollection = client.db('artistryDB').collection('items');
 
-        app.post('/craft_item', async(req, res)=>{
+
+        app.get('/craftItem', async(req, res)=>{
+            const cursor = itemCollection.find();
+            const result = await cursor.toArray();
+            res.send(result);
+        })
+
+        app.post('/craftItem', async(req, res)=>{
             const newItem = req.body;
             console.log(newItem);
             const result = await itemCollection.insertOne(newItem);
@@ -50,7 +68,7 @@ async function run() {
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
     } finally {
         // Ensures that the client will close when you finish/error
-        await client.close();
+
     }
 }
 run().catch(console.dir);
