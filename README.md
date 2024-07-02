@@ -7,7 +7,7 @@ This website features:<br/>
 3. Category Sorting<br/>
 4. Wishlist feature <br/>
 
-I did not face any issues when making this website. I did however find the wishlist functionality a bit tricky to make as I did not use data bases to store wistlist items or id's before. But I was able to finally solv this by seperating the wishlist id and the item id so that 2 users could have the same idem in their wishlist.
+I did not face any issues when making this website. I did however find the wishlist functionality a bit tricky to make as I did not use data bases to store wistlist items or id's before. But I was able to finally solved this by seperating the wishlist id and the item id so that 2 users could have the same idem in their wishlist.
 
 
 Client Side Website Live Link: https://artistry-marketplace-7b3da.web.app
